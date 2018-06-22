@@ -5,26 +5,30 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import org.apache.commons.cli.Options;
 
 public class WebReader {
 	
-	public void webReading(String inputURL) {
+	public ArrayList<String> webReading(String urlAddress) {
 		
-		String urlAddress = inputURL;
+	    ArrayList<String> inputLines = new ArrayList<String>();
+	    
 			
 		Options options = new Options();
 		
 		
 		try {
+			
 			URL myURL = new URL(urlAddress);
 			try {
-				BufferedReader reader = new BufferedReader(new InputStreamReader(myURL.openStream()));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(myURL.openStream(), "UTF-8"));
 				
 				String inputLine;
-				while((inputLine = reader.readLine()) != null)
-					System.out.println(inputLine);
+				while((inputLine = reader.readLine()) != null) {
+					inputLines.add(inputLine);
+				}	
 				reader.close();
 				
 			} catch (IOException e) {
@@ -33,6 +37,9 @@ public class WebReader {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+		
+		return inputLines;
+		
 		}
 
 }

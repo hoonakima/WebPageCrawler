@@ -1,5 +1,7 @@
 package edu.handong.csee.java.bonushw;
 
+import java.util.ArrayList;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -12,17 +14,23 @@ public class getInputCLI {
 	String outputPath;
 	String inputURL;
 	
-	public String gettingInput(String[] args) {
+	public ArrayList<String> gettingInput(String[] args) {
 		
 		Options options = createOptions();
 		
+		
 		if(parseOptions(options, args)){
 			
+			System.out.println("You provided \"" + inputURL +  "\" as the value of the option u");
 			System.out.println("You provided \"" + outputPath +  "\" as the value of the option d");
 		}
-
-		return inputURL;
 		
+		ArrayList<String> strings = new ArrayList<String>();
+		
+		strings.add(inputURL);
+		strings.add(outputPath);
+		
+		return strings;
 		
 	}
 
@@ -58,8 +66,8 @@ public class getInputCLI {
 		Options options = new Options();
 		
 		//add options by using OptionBuilder
-		options.addOption(Option.builder("d").longOpt("path")
-				         .desc("Set a path of a directory or a file to display")
+		options.addOption(Option.builder("d").longOpt("path")                         //Adds an option instance
+				         .desc("Set a path of a directory or a file to display")      //Description 
 				         .hasArg()
 				         .argName("Path name to display")
 				         .required()
