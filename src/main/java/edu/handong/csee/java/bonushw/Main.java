@@ -19,7 +19,6 @@ public class Main {
 
 	public static void main(String[] args) { 
 		
-		
 		Main main = new Main();
 		main.run(args);
 		
@@ -29,10 +28,8 @@ public class Main {
 		FileWriter fileWriter = new FileWriter();
 		fileWriter.fileWriting(path, inputLines);
 		
-		
-		
 	}
-	
+	 
 	private void run(String[] args) {
 		Options options = createOptions();
 
@@ -56,6 +53,7 @@ public class Main {
 				System.out.println("Your program is terminated. (This message is shown because you turned on -v option!");
 			}
 		}
+		System.exit(0);
 	}
 
 
